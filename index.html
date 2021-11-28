@@ -5,11 +5,37 @@
 
 <head>
     <title>Sidereal Time and Star Charts</title>
-    <link rel="stylesheet" href="sidereal_min.css">
+    <!-- <link rel="stylesheet" href="sidereal_min.css"> -->
+    <link rel="stylesheet" href="src/sidereal.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="src/animation.js"></script>
+    <script src="src/brightStars.js"></script>
+    <script src="src/chartGCRS.js"></script>
+    <script src="src/dateAndTime.js"></script>
+    <script src="src/Earth.js"></script>
+    <script src="src/Jupiter.js"></script>
+    <script src="src/Mars.js"></script>
+    <script src="src/Mercury.js"></script>
+    <script src="src/milkyWay_polygons.js"></script>
+    <script src="src/milkyWay.js"></script>
+    <script src="src/MoonElpMpp02DE.js"></script>
+    <script src="src/MoonElpMpp02DEUnabridged.js"></script>
+    <script src="src/Neptune.js"></script>
+    <script src="src/planetPosVSOP87.js"></script>
+    <script src="src/precession.js"></script>
+    <script src="src/riseSetTimes.js"></script>
+    <script src="src/Saturn.js"></script>
+    <script src="src/set_defaults.js"></script>
+    <script src="src/sidereal.js"></script>
+    <script src="src/Sun.js"></script>
+    <script src="src/SunMoonPlanets.js"></script>
+    <script src="src/Uranus.js"></script>
+    <script src="src/Venus.js"></script>
+    <script src="chartGCRS_c.js"></script>
+    <script src="cities.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
-    <script src="index_c.js"></script>
+    <!-- <script src="index_c.js"></script> -->
 </head>
 
 <body onload="init()">
@@ -169,83 +195,89 @@
                 <div id="riseSetStars2"></div>
             </div>
         </div><br>
-        <div id="starCharts">
-            <p><button class="menu" onclick="displayChangeLocs()">Locations and Times</button></p><br>
-            <div id="inputlocs">
-                <h2>Change Locations and Times</h2>
-                <p><b>Location 1</b></p>
-                <p><input type="radio" id="changeLoc1Manual" name="changeLoc1Button" onclick="switchChangeLocForm(1,0)">
-                    <label for="changeLoc1Manual">Manually enter the location
-                        information</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="changeLoc1Select"
-                        name="changeLoc1Button" onclick="switchChangeLocForm(1,1)"> <label for="changeLoc1Select">Choose
-                        from a database</label></p>
-                <div id="changeLoc1Form0">
-                    <p id="geoloc"><button onclick="geoloc()">Determine Location 1 by GPS/IP address</button> <span
-                            id="geolocmessage"></span></p>
-                    <p id="geolocerr" style="color:red"></p>
-                    <table>
-                        <tr>
-                            <td>Name: <input type="text" id="place1in"></td>
-                            <td>Longitude: <input type="number" id="long1in" step="any" min="-180" max="180"></td>
-                            <td>Latitude: <input type="number" id="lat1in" step="any" min="-90" max="90"></td>
-                        </tr>
-                        <tr>
-                            <td>Time zone: GMT+ <input type="number" id="tz1in" step="any" min="-12" max="14"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table><br>
+
+        <div class="container">
+            <div class="row">
+              <div class="col-4">
+                <div>
+                    <h2>Change Locations and Times</h2>
+                    <p><b>Location 1</b></p>
+                    <p><input type="radio" id="changeLoc1Manual" name="changeLoc1Button" onclick="switchChangeLocForm(1,0)">
+                        <label for="changeLoc1Manual">Manually enter the location
+                            information</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="changeLoc1Select"
+                            name="changeLoc1Button" onclick="switchChangeLocForm(1,1)"> <label for="changeLoc1Select">Choose
+                            from a database</label></p>
+                    <div id="changeLoc1Form0">
+                        <div>
+                            <div>
+                                <span>Name: <input type="text" id="place1in"></span>
+                                <br><br>
+                                <span>Longitude: <input type="number" id="long1in" step="any" min="-180" max="180"></span>
+                                <br><br>
+                                <span>Latitude: <input type="number" id="lat1in" step="any" min="-90" max="90"></span>
+                                <br><br>
+                            </div>
+                            <div>
+                                <span>Time zone: GMT+ <input type="number" id="tz1in" step="any" min="-12" max="14"></span>
+                                
+                            </div>
+                        </div><br>
+                    </div>
+                    <div id="changeLoc1Form1" style="display:none"></div>
+                    <p>Set time:</p>
+                    <div>
+                        <div>
+                            <span>Year: <input type="number" id="year1in" step="1" min="-200000" max="200000"></span>
+                            <br><br>
+                            <span>Month: <input type="number" id="month1in" step="1" min="1" max="12"></span>
+                            <br><br>
+                            <span>Day: <input type="number" id="day1in" step="1" min="1" max="31"></span>
+                            <br><br>
+                        </div>
+                        <div>
+                            <span>Hour: <input type="number" id="hour1in" step="1" min="0" max="23"></span>
+                            <br><br>
+                            <span>Minute: <input type="number" id="minute1in" step="1" min="0" max="59"></span>
+                            <br><br>
+                            <span>Second: <input type="number" id="second1in" step="any" min="0" max="60"></span>
+                            <br><br>
+                        </div>
+                    </div><br>
+                    <p><input type="button" value="Submit" onclick="changeLocationsAndTimes()"></p>
+                    <div id="errorlocs"></div>
                 </div>
-                <div id="changeLoc1Form1" style="display:none"></div>
-                <p>Set time:</p>
-                <table>
-                    <tr>
-                        <td>Year: <input type="number" id="year1in" step="1" min="-200000" max="200000"></td>
-                        <td>Month: <input type="number" id="month1in" step="1" min="1" max="12"></td>
-                        <td>Day: <input type="number" id="day1in" step="1" min="1" max="31"></td>
-                    </tr>
-                    <tr>
-                        <td>Hour: <input type="number" id="hour1in" step="1" min="0" max="23"></td>
-                        <td>Minute: <input type="number" id="minute1in" step="1" min="0" max="59"></td>
-                        <td>Second: <input type="number" id="second1in" step="any" min="0" max="60"></td>
-                    </tr>
-                </table><br>
-                <p><input type="button" value="Submit" onclick="changeLocationsAndTimes()"></p>
-                <div id="errorlocs"></div><br>
-                <p>The default settings can now be changed by filling in a <span class="link"
-                        onclick='slideUpLoadUrl("inputlocs","set_defaults.html")'>form</span>.</p>
+              </div>
+              <div class="col-8">
+                <div id="starCharts">
+            
+                    <h1>Local Star Charts</h1>
+                    <p>Location 1: <span id="place1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Longitude: <span
+                            id="long1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Latitude: <span id="lat1"></span></p>
+                    <div id="warning1"></div>
+                    <p>Local Time: <span id="time1"></span>,&nbsp;&nbsp;&nbsp; Sidereal Time: <span id="siderealTime1"></span>
+                    </p>
+                    <div class="canvaswrapper"><canvas id="loc1" width="800" height="800">CANVAS NOT SUPPORTED IN THIS
+                            BROWSER!</canvas>
+                        <div id="tip1" class="tip">
+                            <div class="close" onclick='closePopup("tip1")'>&#10005;</div>
+                            <div id="tip1text"></div>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <p>Show/Hide: 
+                                <button id="showPlanets1" class="active" onclick='showHide(1,"Planets")'>Sun, Moon,Planets</button> 
+                                <button id="showMilkyWay1" class="active" onclick='showHide(1,"MilkyWay")'>Milky Way</button> 
+                                <button id="showConLines1" class="active" onclick='showHide(1,"ConLines")'>Constellation lines</button> 
+                                <button id="showConLab1" onclick='showHide(1,"ConLab")'>Constellation labels</button> 
+                                <button id="showDayNight1" class="active" onclick='showHide(1,"DayNight")'>Day/Night</button>
+                        </p>
+                        <div id="errRotate1"></div>
+                    </div><br><br><br>
+              </div>
             </div>
-            <h1>Local Star Charts</h1>
-            <p>Location 1: <span id="place1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Longitude: <span
-                    id="long1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Latitude: <span id="lat1"></span></p>
-            <div id="warning1"></div>
-            <p>Local Time: <span id="time1"></span>,&nbsp;&nbsp;&nbsp; Sidereal Time: <span id="siderealTime1"></span>
-            </p>
-            <div class="canvaswrapper"><canvas id="loc1" width="800" height="800">CANVAS NOT SUPPORTED IN THIS
-                    BROWSER!</canvas>
-                <div id="tip1" class="tip">
-                    <div class="close" onclick='closePopup("tip1")'>&#10005;</div>
-                    <div id="tip1text"></div>
-                </div>
-            </div>
-            <div class="control">
-                <p>Show/Hide: <button id="showPlanets1" class="active" onclick='showHide(1,"Planets")'>Sun, Moon,
-                        Planets</button> <button id="showEquator1" onclick='showHide(1,"Equator")'>Equator</button>
-                    <button id="showEcliptic1" onclick='showHide(1,"Ecliptic")'>Ecliptic</button> <button
-                        id="showGalactic1" onclick='showHide(1,"Galactic")'>Galactic</button> <button id="showMilkyWay1"
-                        class="active" onclick='showHide(1,"MilkyWay")'>Milky Way</button> <button id="showConLines1"
-                        class="active" onclick='showHide(1,"ConLines")'>Con. lines</button> <button id="showConLab1"
-                        onclick='showHide(1,"ConLab")'>Con. labels</button> <button id="showDayNight1" class="active"
-                        onclick='showHide(1,"DayNight")'>Day/Night</button></p>
-                <p>Azimuth at the top = <input type="number" name="rotation" id="rotate1" style="width:40px"> degrees.
-                    <input type="submit" value="Submit" onclick="rotInput(1)"></p>
-                <div id="errRotate1"></div>
-            </div>
-            <p class="animate"><button class="setupAnimate" onclick="displayAnimationSetup(1)">Animation Setup</button>
-                <button class="controlAnimate" onclick="Animate(1)" id="animate1">Play Animation</button> <button
-                    class="controlAnimate" onclick="playAnimation(1,1)">+1 Frame</button> <button class="controlAnimate"
-                    onclick="playAnimation(1,-1)">-1 Frame</button></p>
-            <div id="animationSetup1"></div><br><br><br>
+          </div>
+          
+        
     <footer>
         <hr>
         <p style="text-align:center">&copy; 2018&ndash;2021</p>

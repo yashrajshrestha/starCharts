@@ -490,7 +490,7 @@ function changeLocationsAndTimes() {
     }
     
     function validate_menu_input(loc) {
-        let divId = 'changeLoc'+loc+'Form1';
+        let divId = 'changeLoc1Form1';
         let ind = parseInt($('#'+divId+'selectCity').val(), 10);
         if (isNaN(ind) || ind == -1) {
             $(errid).append('<p style="color:red;">Please select a city from the dropdown menu for location '+loc+'.</p>');
@@ -551,33 +551,33 @@ function changeLocationsAndTimes() {
     }
     
     function validate_time_input(loc) {
-        let id = '#year'+loc+'in';
+        let id = '#year1in';
         let year = parseInt($(id).val(), 10);
         let min = parseInt($(id).attr('min'), 10);
         let max = parseInt($(id).attr('max'), 10);
         let message = 'Invalid year! Please enter an integer between '+min+' and '+max+'.';
         sanityCheck(year,id,min,max,message,errid);
-        id = '#month'+loc+'in';
+        id = '#month1in';
         let month = parseInt($(id).val(), 10);
         min=1; max=12;
         message = 'Invalid month! Please enter an integer between '+min+' and '+max+'.';
         sanityCheck(month,id,min,max,message,errid);
-        id = '#day'+loc+'in'
+        id = '#day1in'
         let day = parseInt($(id).val(), 10);
         min=1; max=31;
         message = 'Invalid day! Please enter an integer between '+min+' and '+max+'.';
         sanityCheck(day,id,min,max,message,errid);
-        id = '#hour'+loc+'in';
+        id = '#hour1in';
         let hh = parseInt($(id).val(), 10);
         min=0; max=23;
         message = 'Invalid hour! Please enter an integer between '+min+' and '+max+'.';
         sanityCheck(hh,id,min,max,message,errid);
-        id = '#minute'+loc+'in';
+        id = '#minute1in';
         let mm = parseInt($(id).val(), 10);
         min=0; max=59;
         message = 'Invalid minute! Please enter an integer between '+min+' and '+max+'.';
         sanityCheck(mm,id,min,max,message,errid);
-        id = '#second'+loc+'in';
+        id = '#second1in';
         let s = parseFloat($(id).val());
         min=0; max=60;
         message = 'Invalid second! Please enter a number between '+min+' and '+max+'.';
