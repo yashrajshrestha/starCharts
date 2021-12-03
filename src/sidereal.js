@@ -147,9 +147,10 @@ function init_cont() {
     $("#changeLoc1Manual").prop("checked", true);
     $("#changeLoc2Manual").prop("checked", true);
     let para = {divId:'changeLoc1Form1', loc:1};
-    setupChangeLocCityMenu(para);
-    para = {divId:'changeLoc2Form1', loc:2};
-    setupChangeLocCityMenu(para);
+    addCity(para.divId, null);
+    // setupChangeLocCityMenu(para);
+    // para = {divId:'changeLoc2Form1', loc:2};
+    // setupChangeLocCityMenu(para);
     
     starChart();
 }
@@ -423,25 +424,62 @@ function setupChangeLocCityMenu(para) {
 }
 
 function addCity(divId, regionCode) {
-    let city = new_eval(regionCode+'_cities()');
+
+    let region = [{code:'NAm',name:'North America'}, 
+                  {code:'LA', name:'Latin America'}, 
+                  {code:'EA', name:'East Asia'}, 
+                  {code:'SEA', name:'South-East Asia'}, 
+                  {code:'SA', name:'South Asia'}, 
+                  {code:'WCA', name:'West and Central Asia'}, 
+                  {code:'EE', name:'Eastern Europe'}, 
+                  {code:'NE',name:'Northern Europe'}, 
+                  {code:'WE', name:'Western Europe'}, 
+                  {code:'SE', name:'Southern Europe'}, 
+                  {code:'AF', name:'Africa'}, 
+                  {code:'OC', name:'Oceania'}];
+    let cities = [];
+    region.forEach(function(x,i){
+        console.log(x);
+        cities = cities.concat(new_eval(x.code+'_cities()'));
+        console.log(cities);
+
+    });   
+    
+    let city = cities;
     // city is a 2D array of the form 
     // [[city0, country0, latitude0, longitude0, elevation0, UTCoffset0], 
     //  [city1, country1, latitude1, longitude1, elevation1, UTCoffset1],
     //  ... ]
     let n = city.length;
-    let txt = '<select name="'+divId+'selectCity" id="'+divId+'selectCity" onchange="setDefaultCustomTimeZone('+"'"+divId+"','"+regionCode+"'"+')">';
-    txt += '<option disabled selected value="-1"> -- select a city -- </option>'
+
+    let txt = '';
+    txt += '<p style="color:blue;">2. Select a city from the dropdown menu: <span id="'+divId+'selectCitySpan"></span></p>';
+    txt += '<p><span style="color:blue;">3. Choose a time zone:</span><br />';
+    txt += '<input type="radio" id="'+divId+'tzComputer" name="'+divId+'timezone" />';
+    let tz = -(new Date()).getTimezoneOffset()/60;
+    if (tz.toString().length > 6) { tz = tz.toFixed(2);}
+    let tzString = ' ('+(tz >= 0 ? 'GMT+':'GMT')+tz+')';
+    txt += '<label for="'+divId+'tzComputer">Set by computer'+"'s clock"+tzString+'</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    txt += '<input type="radio" id="'+divId+'tzCustom" name="'+divId+'timezone" checked />';
+    txt += '<label for="'+divId+'tzCustom">Custom: GMT+</label>';
+    txt += '<input id="'+divId+'tzCustomInput" type="number" step="0.01" min="-12" max="12" /></p>';
+    $('#'+divId).html(txt);
+
+    
+    let txts = '<select name="'+divId+'selectCity" id="'+divId+'selectCity" onchange="setDefaultCustomTimeZone('+"'"+divId+"','"+regionCode+"'"+')">';
+    txts += '<option disabled selected value="-1"> -- select a city -- </option>'
     let country = '';
+
     for (let i=0; i<n; i++) {
         if (city[i][1] != country) {
-            txt += '<option disabled value="-1" style="color:brown;">'+city[i][1].toUpperCase()+'</option>';
+            txts += '<option disabled value="-1" style="color:brown;">'+city[i][1].toUpperCase()+'</option>';
             country = city[i][1];
         }
         let city1 = city[i][0]+', '+city[i][1];
-        txt += '<option value="'+i+'">'+city1+'</option>';
+        txts += '<option value="'+i+'">'+city1+'</option>';
     }
-    txt += '</select>';
-    $('#'+divId+'selectCitySpan').html(txt);
+    txts += '</select>';
+    $('#'+divId+'selectCitySpan').html(txts);
 }
 
 function setDefaultCustomTimeZone(divId, regionCode) {
@@ -504,7 +542,9 @@ function changeLocationsAndTimes() {
                     break;
                 }
             }
-            let city = new_eval(reg+'_cities()['+ind+']');
+
+            let city = new_eval('SA_cities()['+ind+']');
+            console.log(city);
             if (loc==1) {
                 place1 = city[0]+', '+city[1];
                 lat1 = city[2];
@@ -622,11 +662,11 @@ function changeLocationsAndTimes() {
     }
     validate_time_input(1);
     
-    if ($('#changeLoc2Manual').prop('checked')) {
-        validate_manual_input(2);
-    } else {
-        validate_menu_input(2);
-    }
+    // if ($('#changeLoc2Manual').prop('checked')) {
+    //     validate_manual_input(2);
+    // } else {
+    //     validate_menu_input(2);
+    // }
     if ($(errid).text()=='') {
         if ($('#synTimeYes').prop('checked')) {
             let date = CalDat(date1.D - tz2.tz/1440);
