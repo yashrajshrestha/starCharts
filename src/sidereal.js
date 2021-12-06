@@ -148,6 +148,7 @@ function init_cont() {
     $("#changeLoc2Manual").prop("checked", true);
     let para = {divId:'changeLoc1Form1', loc:1};
     addCity(para.divId, null);
+    $('#changeLoc1Form1').show();
     // setupChangeLocCityMenu(para);
     // para = {divId:'changeLoc2Form1', loc:2};
     // setupChangeLocCityMenu(para);
@@ -376,6 +377,7 @@ function changeSyncTime(i,idHead) {
 }
 
 function switchChangeLocForm(loc, form) {
+    console.log(loc, form);
     $('#changeLoc'+loc+'Form'+form).show();
     $('#changeLoc'+loc+'Form'+(1-form)).hide();
 }

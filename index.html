@@ -202,12 +202,12 @@
                 <div>
                     <h2>Change Locations and Times</h2>
                     <p><b>Location 1</b></p>
-                    <p><input type="radio" id="changeLoc1Manual" name="changeLoc1Button" onclick="switchChangeLocForm(1,0)">
+                    <!-- <p><input type="radio" id="changeLoc1Manual" name="changeLoc1Button" onclick="switchChangeLocForm(1,0)">
                         <label for="changeLoc1Manual">Manually enter the location
                             information</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="changeLoc1Select"
                             name="changeLoc1Button" onclick="switchChangeLocForm(1,1)"> <label for="changeLoc1Select">Choose
-                            from a database</label></p>
-                    <div id="changeLoc1Form0">
+                            from a database</label></p> -->
+                    <!-- <div id="changeLoc1Form0">
                         <div>
                             <div>
                                 <span>Longitude: <input type="number" id="long1in" step="any" min="-180" max="180"></span>
@@ -220,7 +220,7 @@
                                 
                             </div>
                         </div><br>
-                    </div>
+                    </div> -->
                     <div id="changeLoc1Form1" style="display:none"></div>
                     <p>Set time:</p>
                     <div>
@@ -240,7 +240,8 @@
                             <span>Second: <input type="number" id="second1in" step="any" min="0" max="60"></span>
                             <br><br>
                         </div>
-                    </div><br>
+                    </div>
+                    <br>
                     <p><input type="button" value="Submit" onclick="changeLocationsAndTimes()"></p>
                     <div id="errorlocs"></div>
                 </div>
