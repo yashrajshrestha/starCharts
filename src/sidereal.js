@@ -441,10 +441,7 @@ function addCity(divId, regionCode) {
                   {code:'OC', name:'Oceania'}];
     let cities = [];
     region.forEach(function(x,i){
-        console.log(x);
         cities = cities.concat(new_eval(x.code+'_cities()'));
-        console.log(cities);
-
     });   
     
     let city = cities;
@@ -455,7 +452,7 @@ function addCity(divId, regionCode) {
     let n = city.length;
 
     let txt = '';
-    txt += '<p style="color:blue;">2. Select a city from the dropdown menu: <span id="'+divId+'selectCitySpan"></span></p>';
+    txt += '<br><p style="color:black;">Where do you want to see the sky from: <br><br><span id="'+divId+'selectCitySpan"></span></p>';
     txt += '<p><span style="color:blue;">3. Choose a time zone:</span><br />';
     txt += '<input type="radio" id="'+divId+'tzComputer" name="'+divId+'timezone" />';
     let tz = -(new Date()).getTimezoneOffset()/60;
@@ -481,7 +478,20 @@ function addCity(divId, regionCode) {
         txts += '<option value="'+i+'">'+city1+'</option>';
     }
     txts += '</select>';
+
     $('#'+divId+'selectCitySpan').html(txts);
+
+
+   console.log(cities.map(k => k[0]));
+    $('#input').autocomplete({
+        source:cities.map(k => k[0]),
+        minLength: 2,
+        select: function(event, ui){
+            event.preventDefault();
+            console.log(ui);
+            $('#cityName').text(ui.item.value);
+        }
+    });
 }
 
 function setDefaultCustomTimeZone(divId, regionCode) {

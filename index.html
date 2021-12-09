@@ -35,6 +35,8 @@
     <script src="chartGCRS_c.js"></script>
     <script src="cities.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <!-- <script src="index_c.js"></script> -->
 </head>
 
@@ -200,8 +202,8 @@
             <div class="row">
               <div class="col-4">
                 <div>
-                    <h2>Change Locations and Times</h2>
-                    <p><b>Location 1</b></p>
+                    <h2>Create your Night Sky</h2>
+                    <!-- <p><b>Location 1</b></p> -->
                     <!-- <p><input type="radio" id="changeLoc1Manual" name="changeLoc1Button" onclick="switchChangeLocForm(1,0)">
                         <label for="changeLoc1Manual">Manually enter the location
                             information</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="changeLoc1Select"
@@ -221,6 +223,10 @@
                             </div>
                         </div><br>
                     </div> -->
+                    <label for="input">City Name : </label>
+            <input id="input"/><br>
+              
+            Label of City Name: <div id="cityName"></div>   
                     <div id="changeLoc1Form1" style="display:none"></div>
                     <p>Set time:</p>
                     <div>
