@@ -464,7 +464,7 @@ function addCity(divId, regionCode) {
     txt += '<input id="'+divId+'tzCustomInput" type="number" step="0.01" min="-12" max="12" /></p>';
     $('#'+divId).html(txt);
 
-    
+    alert(divId);
     let txts = '<select name="'+divId+'selectCity" id="'+divId+'selectCity" onchange="setDefaultCustomTimeZone('+"'"+divId+"','"+regionCode+"'"+')">';
     txts += '<option disabled selected value="-1"> -- select a city -- </option>'
     let country = '';
@@ -480,26 +480,26 @@ function addCity(divId, regionCode) {
     txts += '</select>';
 
     $('#'+divId+'selectCitySpan').html(txts);
-
-
-   console.log(cities.map(k => k[0]));
+    
     $('#input').autocomplete({
-        source:cities.map(k => k[0]),
+        source:cities.map((k, index) => { return { label: k[0], value: index };}),
         minLength: 2,
         select: function(event, ui){
             event.preventDefault();
-            console.log(ui);
-            $('#cityName').text(ui.item.value);
+            
+            $(this).val(ui.item.label);  
+            setDefaultCustomTimeZone(ui.item.value, 'SA');
         }
     });
 }
 
 function setDefaultCustomTimeZone(divId, regionCode) {
-    let ind = parseInt($('#'+divId+'selectCity').val(), 10);
-    if (ind != -1) {
-        let tz = parseFloat(new_eval(regionCode+'_cities()['+ind+'][5]'));
-        $('#'+divId+'tzCustomInput').val(tz);
-    }
+    // let ind = parseInt($('#'+divId+'selectCity').val(), 10);
+    // alert(ind);
+    // if (ind != -1) {
+        let tz = parseFloat(new_eval(regionCode+'_cities()['+divId+'][5]'));
+        $('#changeLoc1Form1tzCustomInput').val(tz);
+    // }
 }
 
 function changeLocationsAndTimes() {
