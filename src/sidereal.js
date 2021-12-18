@@ -464,7 +464,6 @@ function addCity(divId, regionCode) {
     txt += '<input id="'+divId+'tzCustomInput" type="number" step="0.01" min="-12" max="12" /></p>';
     $('#'+divId).html(txt);
 
-    alert(divId);
     let txts = '<select name="'+divId+'selectCity" id="'+divId+'selectCity" onchange="setDefaultCustomTimeZone('+"'"+divId+"','"+regionCode+"'"+')">';
     txts += '<option disabled selected value="-1"> -- select a city -- </option>'
     let country = '';
@@ -482,12 +481,13 @@ function addCity(divId, regionCode) {
     $('#'+divId+'selectCitySpan').html(txts);
     
     $('#input').autocomplete({
-        source:cities.map((k, index) => { return { label: k[0], value: index };}),
+        source:cities.map((k, index) => { return { label: k[0]+", "+k[1], value: index };}),
         minLength: 2,
         select: function(event, ui){
             event.preventDefault();
             
-            $(this).val(ui.item.label);  
+            $(this).val(ui.item.label);
+            $(this).attr('data-city', ui.item.value);  
             setDefaultCustomTimeZone(ui.item.value, 'SA');
         }
     });
@@ -500,6 +500,13 @@ function setDefaultCustomTimeZone(divId, regionCode) {
         let tz = parseFloat(new_eval(regionCode+'_cities()['+divId+'][5]'));
         $('#changeLoc1Form1tzCustomInput').val(tz);
     // }
+}
+
+function backgroundModifier(){
+
+    // jQuery("#collapseOne").click(function(){
+        jQuery("#starCharts").css("backgroundColor", "#3b4655");
+    // });
 }
 
 function changeLocationsAndTimes() {
@@ -541,22 +548,22 @@ function changeLocationsAndTimes() {
     
     function validate_menu_input(loc) {
         let divId = 'changeLoc1Form1';
-        let ind = parseInt($('#'+divId+'selectCity').val(), 10);
+        let ind = parseInt($('#input').data('city'),10);
         if (isNaN(ind) || ind == -1) {
-            $(errid).append('<p style="color:red;">Please select a city from the dropdown menu for location '+loc+'.</p>');
+            $(errid).append('<p style="color:red;">Please select a city from the dropdown.</p>');
         } else {
-            let prefix = 'region'+divId;
-            let regionCode = ['NAm', 'LA', 'EA', 'SEA', 'SA', 'WCA', 'EE', 'NE', 'WE', 'SE', 'AF', 'OC'];
-            let reg, n = regionCode.length;
-            for (let i=0; i<n; i++) {
-                if ($('#'+prefix+regionCode[i]).prop('checked')) {
-                    reg = regionCode[i];
-                    break;
-                }
-            }
+            // let prefix = 'region'+divId;
+            // let regionCode = ['NAm', 'LA', 'EA', 'SEA', 'SA', 'WCA', 'EE', 'NE', 'WE', 'SE', 'AF', 'OC'];
+            // let reg, n = regionCode.length;
+            // for (let i=0; i<n; i++) {
+            //     if ($('#'+prefix+regionCode[i]).prop('checked')) {
+            //         reg = regionCode[i];
+            //         break;
+            //     }
+            // }
 
             let city = new_eval('SA_cities()['+ind+']');
-            console.log(city);
+            
             if (loc==1) {
                 place1 = city[0]+', '+city[1];
                 lat1 = city[2];
@@ -670,8 +677,10 @@ function changeLocationsAndTimes() {
     if ($('#changeLoc1Manual').prop('checked')) {
         validate_manual_input(1);
     } else {
+        
         validate_menu_input(1);
     }
+    alert("11111");
     validate_time_input(1);
     
     // if ($('#changeLoc2Manual').prop('checked')) {

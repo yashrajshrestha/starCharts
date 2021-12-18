@@ -223,17 +223,72 @@
                             </div>
                         </div><br>
                     </div> -->
-                    <label for="input">City Name : </label>
-            <input id="input"/><br>
-              
-            Label of City Name: <div id="cityName"></div>   
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Design
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" onclick="backgroundModifier()">
+                            <div class="accordion-body">
+                             
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Special title treatment</h5>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Special title treatment</h5>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="card">
+                                          <div class="card-body" style="background-color: #3b4655;">
+                                            <h5 class="card-title">#3b4655</h5>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    <div>
+                    <label for="input"><b>Where do you want to see the sky from: </b></label>
+                        <input id="input" placeholder="Choose your location"/>
+                    </div>
                     <div id="changeLoc1Form1" style="display:none"></div>
-                    <p>Set time:</p>
+                    <p>When was your special occasion:</p>
                     <div>
                         <div>
                             <span>Year: <input type="number" id="year1in" step="1" min="-200000" max="200000"></span>
                             <br><br>
-                            <span>Month: <input type="number" id="month1in" step="1" min="1" max="12"></span>
+                            <span>
+                                <!-- Month: <input type="number" id="month1in" step="1" min="1" max="12"> -->
+                                <label for="Month">Month</label>
+                                <select name="" id="month1in">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>                                    
+                                </select>
+                            </span>
                             <br><br>
                             <span>Day: <input type="number" id="day1in" step="1" min="1" max="31"></span>
                             <br><br>
@@ -248,26 +303,6 @@
                         </div>
                     </div>
                     <br>
-                    <p><input type="button" value="Submit" onclick="changeLocationsAndTimes()"></p>
-                    <div id="errorlocs"></div>
-                </div>
-              </div>
-              <div class="col-8">
-                <div id="starCharts">
-            
-                    <h1>Local Star Charts</h1>
-                    <p>Location 1: <span id="place1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Longitude: <span
-                            id="long1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Latitude: <span id="lat1"></span></p>
-                    <div id="warning1"></div>
-                    <p>Local Time: <span id="time1"></span>,&nbsp;&nbsp;&nbsp; Sidereal Time: <span id="siderealTime1"></span>
-                    </p>
-                    <div class="canvaswrapper"><canvas id="loc1" width="800" height="800">CANVAS NOT SUPPORTED IN THIS
-                            BROWSER!</canvas>
-                        <div id="tip1" class="tip">
-                            <div class="close" onclick='closePopup("tip1")'>&#10005;</div>
-                            <div id="tip1text"></div>
-                        </div>
-                    </div>
                     <div class="control">
                         <p>Show/Hide: 
                                 <button id="showPlanets1" class="active" onclick='showHide(1,"Planets")'>Sun, Moon,Planets</button> 
@@ -277,7 +312,28 @@
                                 <button id="showDayNight1" class="active" onclick='showHide(1,"DayNight")'>Day/Night</button>
                         </p>
                         <div id="errRotate1"></div>
-                    </div><br><br><br>
+                    </div><br>
+                    <p><input type="button" value="Submit" onclick="changeLocationsAndTimes()"></p>
+                    <div id="errorlocs"></div>
+                </div>
+              </div>
+              <div class="col-8">
+                <div id="starCharts" style="padding:50px; border: 15px solid #191b27;">
+
+                    <h1>Local Star Charts</h1>
+                    
+                    <div class="canvaswrapper"><canvas id="loc1" width="800" height="800">CANVAS NOT SUPPORTED IN THIS
+                            BROWSER!</canvas>
+                        <div id="tip1" class="tip">
+                            <div class="close" onclick='closePopup("tip1")'>&#10005;</div>
+                            <div id="tip1text"></div>
+                        </div>
+                    </div>
+                    <p>Location 1: <span id="place1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Longitude: <span
+                        id="long1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Latitude: <span id="lat1"></span></p>
+                    <div id="warning1"></div>
+                    <p>Local Time: <span id="time1"></span>,&nbsp;&nbsp;&nbsp; Sidereal Time: <span id="siderealTime1"></span>
+                    </p>
               </div>
             </div>
           </div>
