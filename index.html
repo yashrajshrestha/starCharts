@@ -261,19 +261,23 @@
                         </div>
                         
                       </div>
-                    <div>
-                    <label for="input"><b>Where do you want to see the sky from: </b></label>
-                        <input id="input" placeholder="Choose your location"/>
-                    </div>
+
+                    <br>
+                      <div class="mb-3">
+                        <label for="input" class="form-label"><b>Where do you want to see the sky from: </b></label>
+                        <input id="input" class="form-control" placeholder="Choose your location"/>
+                      </div>
+                    <br>
+
                     <div id="changeLoc1Form1" style="display:none"></div>
-                    <p>When was your special occasion:</p>
+                    <p><b>When was your special occasion:</b></p>
                     <div>
-                        <div>
+                        <!-- <div>
                             <span>Year: <input type="number" id="year1in" step="1" min="-200000" max="200000"></span>
                             <br><br>
-                            <span>
+                            <span> -->
                                 <!-- Month: <input type="number" id="month1in" step="1" min="1" max="12"> -->
-                                <label for="Month">Month</label>
+                                <!-- <label for="Month">Month</label>
                                 <select name="" id="month1in">
                                     <option value="1">January</option>
                                     <option value="2">February</option>
@@ -292,15 +296,54 @@
                             <br><br>
                             <span>Day: <input type="number" id="day1in" step="1" min="1" max="31"></span>
                             <br><br>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-3">
+                            <label for="inputCity" class="form-label">Year:</label>
+                            <input type="number" class="form-control" id="year1in" step="1" min="-200000" max="200000">
+                          </div>
+                          <div class="col-md-4">
+                            <label for="Month" class="form-label">Month:</label>
+                            <select name="" id="month1in" class="form-select">
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>                                    
+                            </select>
+                          </div>
+                          <div class="col-md-2">
+                            <label for="inputZip" class="form-label">Day:</label>
+                            <input type="number" class="form-control" id="day1in" step="1" min="1" max="31">
+                          </div>
+                          <div class="col-md-2">
+                            <label for="inputZip" class="form-label">Hour:</label>
+                            <input type="number" class="form-control" id="hour1in" step="1" min="0" max="23">
+                          </div>
+                         <!-- <div class="col-md-1">
+                              <label class="form-label">Minute:</label>
+                              <input type="number" class="form-control" id="minute1in" step="1" min="0" max="59">  
+                          </div>
+                          <div class="col-md-1">
+                            <label class="form-label">Second:</label>
+                            <input type="number" class="form-control" id="second1in" step="any" min="0" max="60">
+                          </div> -->
                         </div>
-                        <div>
+                        <!-- <div>
                             <span>Hour: <input type="number" id="hour1in" step="1" min="0" max="23"></span>
                             <br><br>
                             <span>Minute: <input type="number" id="minute1in" step="1" min="0" max="59"></span>
                             <br><br>
                             <span>Second: <input type="number" id="second1in" step="any" min="0" max="60"></span>
                             <br><br>
-                        </div>
+                        </div> -->
                     </div>
                     <br>
                     <div class="control">
@@ -318,11 +361,11 @@
                 </div>
               </div>
               <div class="col-8">
-                <div id="starCharts" style="padding:50px; border: 15px solid #191b27;">
+                <div id="starCharts" style="padding-left:100px; border: 15px solid #191b27;">
 
                     <h1>Local Star Charts</h1>
                     
-                    <div class="canvaswrapper"><canvas id="loc1" width="800" height="800">CANVAS NOT SUPPORTED IN THIS
+                    <div class="canvaswrapper"><canvas id="loc1" width="300" height="300">CANVAS NOT SUPPORTED IN THIS
                             BROWSER!</canvas>
                         <div id="tip1" class="tip">
                             <div class="close" onclick='closePopup("tip1")'>&#10005;</div>

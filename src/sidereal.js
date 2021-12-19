@@ -452,7 +452,7 @@ function addCity(divId, regionCode) {
     let n = city.length;
 
     let txt = '';
-    txt += '<br><p style="color:black;">Where do you want to see the sky from: <br><br><span id="'+divId+'selectCitySpan"></span></p>';
+    // txt += '<br><p style="color:black;">Where do you want to see the sky from: <br><br><span id="'+divId+'selectCitySpan"></span></p>';
     txt += '<p><span style="color:blue;">3. Choose a time zone:</span><br />';
     txt += '<input type="radio" id="'+divId+'tzComputer" name="'+divId+'timezone" />';
     let tz = -(new Date()).getTimezoneOffset()/60;
@@ -462,7 +462,7 @@ function addCity(divId, regionCode) {
     txt += '<input type="radio" id="'+divId+'tzCustom" name="'+divId+'timezone" checked />';
     txt += '<label for="'+divId+'tzCustom">Custom: GMT+</label>';
     txt += '<input id="'+divId+'tzCustomInput" type="number" step="0.01" min="-12" max="12" /></p>';
-    $('#'+divId).html(txt);
+    // $('#'+divId).html(txt);
 
     let txts = '<select name="'+divId+'selectCity" id="'+divId+'selectCity" onchange="setDefaultCustomTimeZone('+"'"+divId+"','"+regionCode+"'"+')">';
     txts += '<option disabled selected value="-1"> -- select a city -- </option>'
@@ -680,7 +680,7 @@ function changeLocationsAndTimes() {
         
         validate_menu_input(1);
     }
-    alert("11111");
+    
     validate_time_input(1);
     
     // if ($('#changeLoc2Manual').prop('checked')) {
