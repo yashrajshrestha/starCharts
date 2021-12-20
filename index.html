@@ -271,6 +271,9 @@
 
                     <div id="changeLoc1Form1" style="display:none"></div>
                     <p><b>When was your special occasion:</b></p>
+
+                      <!-- We will put our React component inside this div. -->
+                      <div id="like_button_container"></div>
                     <div>
                         <!-- <div>
                             <span>Year: <input type="number" id="year1in" step="1" min="-200000" max="200000"></span>
@@ -360,18 +363,19 @@
                     <div id="errorlocs"></div>
                 </div>
               </div>
-              <div class="col-8">
-                <div id="starCharts" style="padding-left:100px; border: 15px solid #191b27;">
+              <div class="col-8" id="starFrame" style="border: 15px solid #191b27;">
+                <h1 style="text-align:center;">Local Star Charts</h1>
+                <div id="starCharts" style="padding-left:150px;">
 
-                    <h1>Local Star Charts</h1>
-                    
-                    <div class="canvaswrapper"><canvas id="loc1" width="300" height="300">CANVAS NOT SUPPORTED IN THIS
+                    <br>
+                    <div class="canvaswrapper"><canvas id="loc1" width="500" height="500">CANVAS NOT SUPPORTED IN THIS
                             BROWSER!</canvas>
                         <div id="tip1" class="tip">
                             <div class="close" onclick='closePopup("tip1")'>&#10005;</div>
                             <div id="tip1text"></div>
                         </div>
                     </div>
+                    <br>
                     <p>Location 1: <span id="place1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Longitude: <span
                         id="long1"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Latitude: <span id="lat1"></span></p>
                     <div id="warning1"></div>
@@ -380,12 +384,21 @@
               </div>
             </div>
           </div>
-          
+           
+  
         
     <footer>
         <hr>
         <p style="text-align:center">&copy; 2018&ndash;2021</p>
     </footer>
+
+
+      <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+  <script src="like_button.js"></script>
 </body>
 
 </html>

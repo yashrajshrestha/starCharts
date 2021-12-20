@@ -504,9 +504,7 @@ function setDefaultCustomTimeZone(divId, regionCode) {
 
 function backgroundModifier(){
 
-    // jQuery("#collapseOne").click(function(){
-        jQuery("#starCharts").css("backgroundColor", "#3b4655");
-    // });
+    jQuery("#starFrame").css("backgroundColor", "#3b4655");
 }
 
 function changeLocationsAndTimes() {
