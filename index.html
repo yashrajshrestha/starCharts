@@ -203,27 +203,21 @@
               <div class="col-4">
                 <div>
                     <h2>Create your Night Sky</h2>
-                    <!-- <p><b>Location 1</b></p> -->
-                    <!-- <p><input type="radio" id="changeLoc1Manual" name="changeLoc1Button" onclick="switchChangeLocForm(1,0)">
-                        <label for="changeLoc1Manual">Manually enter the location
-                            information</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="changeLoc1Select"
-                            name="changeLoc1Button" onclick="switchChangeLocForm(1,1)"> <label for="changeLoc1Select">Choose
-                            from a database</label></p> -->
-                    <!-- <div id="changeLoc1Form0">
-                        <div>
-                            <div>
-                                <span>Longitude: <input type="number" id="long1in" step="any" min="-180" max="180"></span>
-                                <br><br>
-                                <span>Latitude: <input type="number" id="lat1in" step="any" min="-90" max="90"></span>
-                                <br><br>
-                            </div>
-                            <div>
-                                <span>Time zone: GMT+ <input type="number" id="tz1in" step="any" min="-12" max="14"></span>
-                                
-                            </div>
-                        </div><br>
-                    </div> -->
-                    <div class="accordion" id="accordionExample">
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -259,10 +253,8 @@
                             </div>
                           </div>
                         </div>
-                        
                       </div>
-
-                    <br>
+                      <br>
                       <div class="mb-3">
                         <label for="input" class="form-label"><b>Where do you want to see the sky from: </b></label>
                         <input id="input" class="form-control" placeholder="Choose your location"/>
@@ -326,10 +318,13 @@
                             <label for="inputZip" class="form-label">Day:</label>
                             <input type="number" class="form-control" id="day1in" step="1" min="1" max="31">
                           </div>
-                          <div class="col-md-2">
-                            <label for="inputZip" class="form-label">Hour:</label>
-                            <input type="number" class="form-control" id="hour1in" step="1" min="0" max="23">
+                          <div class="col-md-2 input-group">
+                            <label for="inputZip" class="form-label">Time:</label>
+                            <input type="number" class="form-control" id="hour1in" step="1" min="0" max="23" value="1">
+                            <input type="number" class="form-control" id="minute1in" step="1" min="0" max="59" value="0">
+                            <input type="number" class="form-control" id="second1in" step="any" min="0" max="60" value="0">
                           </div>
+
                          <!-- <div class="col-md-1">
                               <label class="form-label">Minute:</label>
                               <input type="number" class="form-control" id="minute1in" step="1" min="0" max="59">  
@@ -339,14 +334,14 @@
                             <input type="number" class="form-control" id="second1in" step="any" min="0" max="60">
                           </div> -->
                         </div>
-                        <!-- <div>
-                            <span>Hour: <input type="number" id="hour1in" step="1" min="0" max="23"></span>
-                            <br><br>
-                            <span>Minute: <input type="number" id="minute1in" step="1" min="0" max="59"></span>
+                        <div>
+                            <!-- <span>Hour: <input type="number" id="hour1in" step="1" min="0" max="23"></span>
+                            <br><br> -->
+                            <!-- <span>Minute: <input type="number" id="minute1in" step="1" min="0" max="59"></span>
                             <br><br>
                             <span>Second: <input type="number" id="second1in" step="any" min="0" max="60"></span>
-                            <br><br>
-                        </div> -->
+                            <br><br> -->
+                        </div>
                     </div>
                     <br>
                     <div class="control">
@@ -361,6 +356,13 @@
                     </div><br>
                     <p><input type="button" value="Submit" onclick="changeLocationsAndTimes()"></p>
                     <div id="errorlocs"></div>
+                <!-- </div> -->
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">2</div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">3</div>
+                      </div>
+                  
                 </div>
               </div>
               <div class="col-8" id="starFrame" style="border: 15px solid #191b27;">
@@ -384,8 +386,6 @@
               </div>
             </div>
           </div>
-           
-  
         
     <footer>
         <hr>

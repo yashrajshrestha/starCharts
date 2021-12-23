@@ -452,7 +452,6 @@ function addCity(divId, regionCode) {
     let n = city.length;
 
     let txt = '';
-    // txt += '<br><p style="color:black;">Where do you want to see the sky from: <br><br><span id="'+divId+'selectCitySpan"></span></p>';
     txt += '<p><span style="color:blue;">3. Choose a time zone:</span><br />';
     txt += '<input type="radio" id="'+divId+'tzComputer" name="'+divId+'timezone" />';
     let tz = -(new Date()).getTimezoneOffset()/60;
